@@ -15,4 +15,27 @@ public class Note {
     @NonNull
     @ColumnInfo(name = "Content")
     private String content;
+
+    public Note(@NonNull String title, @NonNull String content) {
+        this.title = title;
+        this.content = content;
+    }
+
+    @NonNull
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(@NonNull String title) {
+        this.title = title;
+    }
+
+    @NonNull
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(@NonNull String content) {
+        this.content = content;
+    }
 }
