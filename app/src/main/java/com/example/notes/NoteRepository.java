@@ -25,6 +25,10 @@ public class NoteRepository {
     {
        new insertAsyncTask(noteDao).execute(note);
     }
+    public Note search (String title)
+    {
+        return noteDao.search(title);
+    }
 
     private static class insertAsyncTask extends AsyncTask<Note,Void,Void>
     {

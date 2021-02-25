@@ -15,19 +15,29 @@ public class NoteListAdapter extends RecyclerView.Adapter <NoteListAdapter.NoteV
 
     private final List<Note> allNotes;
     private LayoutInflater layoutInflater;
+    private ItemClickListener itemClickListener;
 
-    public NoteListAdapter(List<Note> notes, Context context) {
+    public NoteListAdapter(List<Note> notes, Context context , ItemClickListener itemClickListener) {
         allNotes = notes;
         this.layoutInflater = layoutInflater.from(context);
+        this.itemClickListener = itemClickListener;
     }
 
 
-    public class NoteViewHolder extends RecyclerView.ViewHolder
+    public class NoteViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         private TextView textView;
-        public NoteViewHolder(View itemView , NoteListAdapter noteListAdapter) {
+        private ItemClickListener itemClickListener;
+        public NoteViewHolder(View itemView , ItemClickListener itemClickListener) {
             super(itemView);
-            textView = itemView.findViewById(R.id.title);
+            this.textView = itemView.findViewById(R.id.title);
+            this.itemClickListener = itemClickListener;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            itemClickListener.onItemClick(getAdapterPosition());
         }
     }
 
@@ -35,15 +45,13 @@ public class NoteListAdapter extends RecyclerView.Adapter <NoteListAdapter.NoteV
     @Override
     public NoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View mView = layoutInflater.inflate(R.layout.note,parent,false);
-        return new NoteViewHolder(mView , this);
+        return new NoteViewHolder(mView , itemClickListener );
     }
 
     @Override
     public void onBindViewHolder(@NonNull NoteViewHolder holder, int position) {
         if (allNotes != null) {
-            Note note = allNotes.get(position);
-            String mCurrent = note.getTitle();
-            holder.textView.setText(mCurrent);
+            holder.textView.setText(allNotes.get(position).getTitle());
         }
         else
         {
@@ -58,4 +66,8 @@ public class NoteListAdapter extends RecyclerView.Adapter <NoteListAdapter.NoteV
         return 0;
     }
 
+    public interface ItemClickListener
+    {
+        void onItemClick( int position);
+    }
 }
