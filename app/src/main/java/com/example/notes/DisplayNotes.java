@@ -10,7 +10,7 @@ public class DisplayNotes extends AppCompatActivity {
     NoteRepository noteRepository;
     Note note;
 
-    TextView title, content;
+    TextView content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,9 +18,7 @@ public class DisplayNotes extends AppCompatActivity {
         setContentView(R.layout.activity_display_notes);
         noteRepository = new NoteRepository(this);
         note = noteRepository.search(getIntent().getStringExtra("title"));
-        title = findViewById(R.id.title);
         content = findViewById(R.id.content);
-        title.setText(note.getTitle());
         content.setText(note.getContent());
     }
 }

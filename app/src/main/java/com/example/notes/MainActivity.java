@@ -40,6 +40,5 @@ public class MainActivity extends AppCompatActivity implements NoteListAdapter.I
         Intent intent = new Intent(MainActivity.this,DisplayNotes.class);
         intent.putExtra("title",notes.get(position).getTitle());
         startActivity(intent);
-        finish();
     }
 }

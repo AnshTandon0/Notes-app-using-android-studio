@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".AddNote"
     android:background="#FAE392"
-    android:paddingHorizontal="10dp"
-    android:paddingVertical="10dp">
+    android:paddingHorizontal="20dp"
+    android:paddingVertical="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,13 +39,14 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="375dp"
                 android:orientation="vertical"
                 android:layout_marginTop="10dp">
 
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:paddingBottom="15dp">
 
                     <EditText
                         android:id="@+id/content"
@@ -53,7 +54,8 @@
                         android:layout_height="match_parent"
                         android:hint="Content"
                         android:textSize="30sp"
-                        android:layout_marginTop="20dp"/>
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="10dp"/>
 
                 </ScrollView>
 

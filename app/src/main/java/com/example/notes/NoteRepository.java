@@ -1,7 +1,7 @@
 package com.example.notes;
 
 import android.content.Context;
-import android.os.AsyncTask;
+
 import java.util.List;
 
 public class NoteRepository {
@@ -23,25 +23,14 @@ public class NoteRepository {
 
     public void insert (Note note)
     {
-       new insertAsyncTask(noteDao).execute(note);
+       new InsertAsyncTask(noteDao).execute(note);
     }
     public Note search (String title)
     {
         return noteDao.search(title);
     }
-
-    private static class insertAsyncTask extends AsyncTask<Note,Void,Void>
+    public void update (Note note)
     {
-        private NoteDao mNoteDao;
-        public insertAsyncTask(NoteDao dao) {
-            mNoteDao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(Note... notes) {
-            mNoteDao.insert(notes[0]);
-            return null;
-        }
+        new UpdateAsyncTask(noteDao).execute(note);
     }
-
 }
