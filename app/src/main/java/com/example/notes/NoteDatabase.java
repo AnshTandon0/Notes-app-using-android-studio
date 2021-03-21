@@ -22,7 +22,7 @@ public abstract class NoteDatabase extends RoomDatabase {
     private static NoteDatabase buildDatabaseInstance(Context context)
     {
     return Room.databaseBuilder(context,NoteDatabase.class,"db_name")
-            .allowMainThreadQueries()
+           // .allowMainThreadQueries()
             .build();
     }
 
