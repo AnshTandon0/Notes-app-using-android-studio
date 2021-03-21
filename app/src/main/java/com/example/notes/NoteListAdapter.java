@@ -28,7 +28,7 @@ public class NoteListAdapter extends RecyclerView.Adapter <NoteListAdapter.NoteV
     {
         private TextView textView;
         private ItemClickListener itemClickListener;
-        public NoteViewHolder(View itemView , ItemClickListener itemClickListener) {
+        public NoteViewHolder( View itemView , ItemClickListener itemClickListener) {
             super(itemView);
             this.textView = itemView.findViewById(R.id.title);
             this.itemClickListener = itemClickListener;

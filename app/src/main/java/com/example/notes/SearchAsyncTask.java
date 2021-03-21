@@ -2,23 +2,17 @@ package com.example.notes;
 
 import android.os.AsyncTask;
 
-class SearchAsyncTask extends AsyncTask<Void,Void,Void> {
+class SearchAsyncTask extends AsyncTask<String,Void,Note> {
 
     private NoteDao mNoteDao;
-    private String mtitle;
-    private Note note;
 
-    public Note getNote(NoteDao dao , String title)
+    public SearchAsyncTask( NoteDao noteDao)
     {
-        this.mNoteDao =dao;
-        this.mtitle = title;
-        new SearchAsyncTask().execute();
-        return note;
+        this.mNoteDao = noteDao;
     }
 
     @Override
-    protected Void doInBackground(Void... voids) {
-        note = mNoteDao.search(mtitle);
-        return null;
+    protected Note doInBackground(String... strings) {
+        return mNoteDao.search(strings[0]);
     }
 }

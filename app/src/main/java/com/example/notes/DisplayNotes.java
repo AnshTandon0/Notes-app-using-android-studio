@@ -10,6 +10,8 @@ import android.widget.TextView;
 import android.view.Menu;
 import android.widget.Toast;
 
+import java.util.concurrent.ExecutionException;
+
 public class DisplayNotes extends AppCompatActivity {
 
     NoteRepository noteRepository;
@@ -22,7 +24,13 @@ public class DisplayNotes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_notes);
         noteRepository = new NoteRepository(this);
-        note = noteRepository.search(getIntent().getStringExtra("title"));
+        try {
+            note = noteRepository.search(getIntent().getStringExtra("title"));
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         content = findViewById(R.id.content);
         content.setText(note.getContent());
     }
